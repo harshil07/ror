@@ -1,0 +1,53 @@
+<table id="hor-zebra" >
+  <thead>
+  <tr>
+    <th scope="col"><%= sortable "name" %></th>
+    <th scope="col"><%= sortable "domain" %></th>
+    <th scope="col"><%= sortable "qrank" %></th>
+    <th scope="col"><%= sortable "arank" %></th>
+    <th scope="col"><%= sortable "server_location", "Server Location" %></th>
+    <th scope="col"><%= sortable "deepdive" %></th>
+    <th scope="col"><%= sortable "chat" %></th>
+    <th scope="col"><%= sortable "is_brand", "Is Brand" %></th>
+    <th scope="col"><%= sortable "retailers" %></th>
+    <th scope="col"><%= sortable "social" %></th>
+    <th scope="col"></th>
+    <th scope="col"></th>
+    <th scope="col"></th>
+  </tr>
+  </thead>
+
+<% i=0 %>
+<% @companies.each do |company| %>
+  <% if i%2==0 %>
+	<tr>
+  <% else %>
+	<tr class="odd">
+  <% end %>
+    <td style="max-width:250px;word-wrap:break-word;"><%= company.name %></td>
+    <td><a href="http://www.<%= company.domain %>"><%= company.domain %></a></td>
+    <td><%= company.qrank %></td>
+    <td><%= company.arank %></td>
+    <td><%= company.server_location %></td>
+    <td style="max-width:250px;word-wrap:break-word;"><a href="http://www.<%= company.deepdive %>"><%= company.deepdive %></a></td>
+    <td><%= company.chat %></td>
+    <td><%= company.is_brand %></td>
+    <td><%= company.retailers %></td>
+    <td><% company.social.each do |s| %>
+	   <a href='<%=s%>'><%=s%></a><br/>
+	<% end %>
+    </td>
+    <td><%= link_to 'Show', company %></td>
+    <td><%= link_to 'Edit', edit_company_path(company) %></td>
+    <td><%= link_to 'Destroy', company, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+  <% i = i+1 %>
+<% end %>
+</table>
+
+<br />
+<%= hidden_field_tag :direction, params[:direction] %>
+<%= hidden_field_tag :sort, params[:sort] %>
+<%= paginate @companies %>
+
+<%= link_to 'New Company', new_company_path %>

@@ -1,0 +1,23 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  name: MyString
+  domain: MyString
+  qrank: 1
+  arank: 1
+  server_location: MyString
+  deepdive: MyString
+  is_brand: false
+  retailers: 
+  social: 
+
+two:
+  name: MyString
+  domain: MyString
+  qrank: 1
+  arank: 1
+  server_location: MyString
+  deepdive: MyString
+  is_brand: false
+  retailers: 
+  social: 

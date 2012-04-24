@@ -1,0 +1,39 @@
+class AnalyticsController < ApplicationController
+
+	def index
+		@data = Hash.new
+		Company.all.distinct(:chat).each do |chat|
+			@data[chat] = Company.where(:chat => chat).count	
+		end
+
+		@fb_data = Hash.new
+		@gp_data = Hash.new
+		@tw_data = Hash.new
+		Company.all.distinct(:domain).each do |company|
+			company.social.each do |social|
+				if social.include?("facebook")
+					if @fb_data[company.chat].nil?
+						@fb_data[company.chat] = 1
+					else
+						@fb_data[company.chat] += 1
+					end
+				end
+				if social.include?("google")
+					if @gp_data[company.chat].nil?
+						@gp_data[company.chat] = 1
+					else
+						@gp_data[company.chat] += 1
+					end
+				end
+				if social.include?("twitter")
+					if @tw_data[company.chat].nil?
+						@tw_data[company.chat] = 1
+					else
+						@tw_data[company.chat] += 1
+					end
+				end
+			end
+		end
+		render
+	end
+end

@@ -1,0 +1,216 @@
+<!DOCTYPE HTML>
+<% %>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<title>Analytics</title>
+
+		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+		<script type="text/javascript">
+var chart;
+var fb_chart;
+var gp_chart;
+var tw_chart;
+$(document).ready(function() {
+	chart = new Highcharts.Chart({
+		chart: {
+			renderTo: 'chart',
+			plotBackgroundColor: null,
+			plotBorderWidth: null,
+			plotShadow: false
+		},
+		title: {
+			<% 
+				count =0 
+				@data.each_pair do |k,v|
+ 
+			%>
+			<% count += v %>
+			<% end %>
+			text: "Overall Usage by Chat company (Total: <%=count%>)"
+		},
+		tooltip: {
+			formatter: function() {
+				return '<b>'+ this.point.name +'</b>: '+ Math.round(this.percentage) +' %';
+			}
+		},
+		plotOptions: {
+			pie: {
+				allowPointSelect: true,
+				cursor: 'pointer',
+				dataLabels: {
+					enabled: true,
+					color: '#000000',
+					connectorColor: '#000000',
+					formatter: function() {
+						return '<b>'+ this.point.name +'</b>: '+ Math.round(this.percentage) +' %';
+					}
+				}
+			}
+		},
+		series: [{
+			type: 'pie',
+			name: 'Browser share',
+			data: [
+				
+				<% @data.each_pair do |k,v| %>
+				 <%= "['#{k}', #{v}]," %>
+				<% end %>
+			]
+		}]
+	});
+	fb_chart = new Highcharts.Chart({
+		chart: {
+			renderTo: 'fb_chart',
+			plotBackgroundColor: null,
+			plotBorderWidth: null,
+			plotShadow: false
+		},
+		title: {
+			<% 
+				count =0 
+				@fb_data.each_pair do |k,v|
+ 
+			%>
+			<% count += v %>
+			<% end %>
+			text: "Usage by Companies on Facebook (Total: <%=count%>)"
+		},
+		tooltip: {
+			formatter: function() {
+				return '<b>'+ this.point.name +'</b>: '+ Math.round(this.percentage) +' %';
+			}
+		},
+		plotOptions: {
+			pie: {
+				allowPointSelect: true,
+				cursor: 'pointer',
+				dataLabels: {
+					enabled: true,
+					color: '#000000',
+					connectorColor: '#000000',
+					formatter: function() {
+						return '<b>'+ this.point.name +'</b>: '+ Math.round(this.percentage) +' %';
+					}
+				}
+			}
+		},
+		series: [{
+			type: 'pie',
+			name: 'Browser share',
+			data: [
+				
+				<% @fb_data.each_pair do |k,v| %>
+				 <%= "['#{k}', #{v}]," %>
+				<% end %>
+			]
+		}]
+	});
+	gp_chart = new Highcharts.Chart({
+		chart: {
+			renderTo: 'gp_chart',
+			plotBackgroundColor: null,
+			plotBorderWidth: null,
+			plotShadow: false
+		},
+		title: {
+			<% 
+				count =0 
+				@gp_data.each_pair do |k,v|
+ 
+			%>
+			<% count += v %>
+			<% end %>
+			text: "Usage by Companies on G+ (Total: <%=count%>)"
+		},
+		tooltip: {
+			formatter: function() {
+				return '<b>'+ this.point.name +'</b>: '+ Math.round(this.percentage) +' %';
+			}
+		},
+		plotOptions: {
+			pie: {
+				allowPointSelect: true,
+				cursor: 'pointer',
+				dataLabels: {
+					enabled: true,
+					color: '#000000',
+					connectorColor: '#000000',
+					formatter: function() {
+						return '<b>'+ this.point.name +'</b>: '+ Math.round(this.percentage) +' %';
+					}
+				}
+			}
+		},
+		series: [{
+			type: 'pie',
+			name: 'Browser share',
+			data: [
+				
+				<% @gp_data.each_pair do |k,v| %>
+				 <%= "['#{k}', #{v}]," %>
+				<% end %>
+			]
+		}]
+	});
+	tw_chart = new Highcharts.Chart({
+		chart: {
+			renderTo: 'tw_chart',
+			plotBackgroundColor: null,
+			plotBorderWidth: null,
+			plotShadow: false
+		},
+		title: {
+			<% 
+				count =0 
+				@tw_data.each_pair do |k,v|
+ 
+			%>
+			<% count += v %>
+			<% end %>
+			text: "Usage by Companies on Twitter (Total: <%=count%>)"
+		},
+		tooltip: {
+			formatter: function() {
+				return '<b>'+ this.point.name +'</b>: '+ Math.round(this.percentage) +' %';
+			}
+		},
+		plotOptions: {
+			pie: {
+				allowPointSelect: true,
+				cursor: 'pointer',
+				dataLabels: {
+					enabled: true,
+					color: '#000000',
+					connectorColor: '#000000',
+					formatter: function() {
+						return '<b>'+ this.point.name +'</b>: '+ Math.round(this.percentage) +' %';
+					}
+				}
+			}
+		},
+		series: [{
+			type: 'pie',
+			name: 'Browser share',
+			data: [
+				
+				<% @tw_data.each_pair do |k,v| %>
+				 <%= "['#{k}', #{v}]," %>
+				<% end %>
+			]
+		}]
+	});
+});
+
+		</script>
+	</head>
+	<body>
+<script type="text/javascript" src="javascripts/highcharts.js"></script>
+
+<div id="chart" style="width: 800px; height: 400px; margin: 0 auto"></div>
+<div id="fb_chart" style="width: 800px; height: 400px; margin: 0 auto"></div>
+<div id="gp_chart" style="width: 800px; height: 400px; margin: 0 auto"></div>
+<div id="tw_chart" style="width: 800px; height: 400px; margin: 0 auto"></div>
+
+	</body>
+</html>

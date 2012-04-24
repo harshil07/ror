@@ -1,0 +1,23 @@
+require 'rubygems'
+require 'nokogiri'
+require 'open-uri'
+require 'uri'
+
+file = File.open('test.txt', 'r')
+while (name = file.gets)	
+	
+ 	begin
+		url = "https://www.google.com/search?aq=f&sourceid=chrome&client=ubuntu&channel=cs&ie=UTF-8&q="
+		escaped = URI.escape(name, Regexp.new("[^#{URI::PATTERN::UNRESERVED}]"))
+		doc = Nokogiri::HTML(open(url+escaped))
+		#puts doc
+		File.open('urls.txt', 'a') do |f|  
+		  	link = doc.xpath("//h3[@class = 'r']/a[@href]").first		
+			if !link.nil?
+				href = link['href'].match(/q=(.*)&sa/m)[1]
+				f.puts name.strip + " "+ href
+			end
+		end 
+	rescue
+	end
+end

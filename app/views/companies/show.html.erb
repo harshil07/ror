@@ -1,0 +1,56 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Name:</b>
+  <%= @company.name %>
+</p>
+
+<p>
+  <b>Domain:</b>
+  <a href="<%= @company.domain %>"><%= @company.domain %></a>
+</p>
+
+<p>
+  <b>Qrank:</b>
+  <%= @company.qrank %>
+</p>
+
+<p>
+  <b>Arank:</b>
+  <%= @company.arank %>
+</p>
+
+<p>
+  <b>Server location:</b>
+  <%= @company.server_location %>
+</p>
+
+<p>
+  <b>Deepdive:</b>
+  <%= @company.deepdive %>
+</p>
+
+<p>
+  <b>Chat:</b>
+  <%= @company.chat %>
+</p>
+
+<p>
+  <b>Is brand:</b>
+  <%= @company.is_brand %>
+</p>
+
+<p>
+  <b>Retailers:</b>
+  <%= @company.retailers %>
+</p>
+
+<p>
+  <b>Social:</b>
+  <%= @company.social %>
+</p>
+
+
+<%= link_to 'Edit', edit_company_path(@company) %> |
+<%= link_to 'Back', companies_path %>
+

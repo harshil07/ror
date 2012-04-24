@@ -1,0 +1,19 @@
+<html>
+<head>
+<LINK href="stylesheets/style.css" rel="stylesheet" type="text/css">
+<title>Chatid</title>
+</head>
+<h1>Companies</h1>
+
+
+<%= form_tag companies_path, :method => 'get', :id => "companies_search" do %>
+  <p>
+    <%= text_field_tag :search, params[:search] %>
+    <%= submit_tag "Search", :name => nil %>
+  </p>
+
+  <div id="companies"><%= render 'companies' %></div>
+<% end %>
+
+
+</html>

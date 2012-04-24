@@ -1,0 +1,19 @@
+<h1>Retailer Search</h1>
+<%= form_tag('/search' , :method => 'get') do %>
+  <p>Enter Brand: 
+    <%= text_field_tag :search, params[:search] %>
+    <%= submit_tag "Search", :name => nil %>
+  </p>
+<% end %>
+
+<% @results.each do |result| %>
+<p> 
+	<%= result %>
+</p>
+<% end %>
+
+<% if !@hit_count.nil? %>
+<%= "No of results: "+@hit_count  %>
+<% end %>
+
+
